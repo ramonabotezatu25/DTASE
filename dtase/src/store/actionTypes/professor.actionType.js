@@ -1,0 +1,5 @@
+const APPROVE_THESSIS = "UPLOAD_THESSIS"
+
+export default {
+    APPROVE_THESSIS
+}
