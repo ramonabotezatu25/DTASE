@@ -1,5 +1,44 @@
 .info-left-page {
-    width: 200px;
-    height: 100px;
-    background-color: "blue"
+    width: 50%;
+    height: 1024px;
+    background-color: "blue";
+    align-items: flex-start;
+}
+
+.login-form-container {
+    width: 50%;
+    height:100%;
+    align-items: flex-end;
+    background-color: white;
+}
+
+.logo-wrapper {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.logo-login-page{
+    width: 350px;
+    height: 145px;
+    position: relative;
+    margin-top: 30%;
+    
+}
+
+.title-login-page{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    size: 20px;
+    font-style: normal;
+    font-size: 30px;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+.subtitle-login-page{
+    margin-top: 70px;
+    margin-left: 30px;
+    margin-right: 30px;
+    
 }
