@@ -1,5 +1,5 @@
 import React from 'react'
-import './LoginPage.css'
+import './LoginPage.scss'
 import LoginIntro from '../../components/loginPageComponent/login-intro-component'
 import LoginForm from '../../components/loginPageComponent/login-form-component'
 
