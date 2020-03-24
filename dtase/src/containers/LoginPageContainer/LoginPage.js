@@ -7,7 +7,7 @@ const LoginPage = props => {
     console.log("login page");
 
     return ( 
-        <div className="login-page-container">
+        <div className="ms-Grid-row login-page-container">
             <LoginIntro/>
             <LoginForm/>
         </div>

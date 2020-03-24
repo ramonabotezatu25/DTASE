@@ -11,20 +11,27 @@ import {
     NotificationManager
 } from "react-notifications";
 import "react-notifications/lib/notifications.css";
+import {Redirect} from 'react-router-dom';
 
 class LoginForm extends Component {
     state = {
         username: '',
         password: '',
+        type: 'student',
         isErrorMessageHidden:  false,
+        isAuthenticated: false,
+        redirectToReferrer: false,
     };
+
+    accountType = 'student'; 
 
     constructor() {
         super();
+
     }
 
 
-    handleSubmit = (event) => {
+    handleLogin = (event) => {
         if (this.state.username === '' && this.state.password === ''){
             this.setState({ isErrorMessageHidden: false });
             NotificationManager.error("All fields are required", "Error!");
@@ -33,9 +40,21 @@ class LoginForm extends Component {
             console.log("else")
             this.setState({ isErrorMessageHidden: false });
             NotificationManager.success("You have been logged in", "Success!");
+            fakeAuth.authenticate(()=> {
+                this.setState({redirectToReferrer: true})
+            })
+            console.log("Ramona", this.props)
+            
 
         }
     };
+
+    _onToggleChange = (event, checked) => {
+        checked ? this.setState({type: 'professor'}) : this.setState({type: 'student'});
+        this.accountType =  this.state.type;
+    }
+    
+    
 
     handleTextChange = (event) => {
         this.setState({
@@ -44,9 +63,18 @@ class LoginForm extends Component {
     }
 
     render() {
-        const defaults = { email: "Username", password: "Password" };
+        const defaults = { username: 'username', password: 'password' };
+        const {redirectToReferrer} = this.state;
+
+        console.warn("Ramona state type", this.state.type)
+        if (redirectToReferrer) {
+            return (
+                <Redirect to={this.state.type}/>
+            )
+          }
+
         return (
-            <div className="login-form-container">
+            <div className="ms-Grid-col ms-sm12 ms-hiddenXxlUp login-form-container">
                 {this.state.isErrorMessageHidden ? null : <NotificationContainer />}
                 <div className="login-form">
                     <h2 style={{marginLeft: '20%'}}>Login</h2>
@@ -64,12 +92,13 @@ class LoginForm extends Component {
                                     inlineLabel
                                     onText="Professor"
                                     offText="Student"
-                                    onChange={this._onChange}
+                                    defaultChecked={false}
+                                    onChange={this._onToggleChange}
                                 />
 
                                 <TextField
                                     className="input-text-field"
-                                    placeholder={defaults.email}
+                                    placeholder={defaults.username}
                                     id="usernameInput"
                                     name='username'
                                     value={this.state.username}
@@ -91,7 +120,7 @@ class LoginForm extends Component {
 
                                 />
 
-                                <PrimaryButton text="Log in" onClick={this.handleSubmit} allowDisabledFocus />
+                                <PrimaryButton text="Log in" onClick={this.handleLogin} allowDisabledFocus />
                             </Stack>
                     </div>
                 </div>
@@ -108,6 +137,14 @@ class LoginForm extends Component {
     };
 }
 
-
-
+export const fakeAuth = {
+    isAuthenticated: false,
+    type: 'student',
+    authenticate(cb) {
+      this.isAuthenticated = true;
+      this.type = this.accountType;
+      setTimeout(cb, 100)
+    },
+  };
+  
 export default LoginForm;

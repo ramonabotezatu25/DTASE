@@ -3,7 +3,9 @@ import actions from '../actions/user.action'
 const INITIAL_STATE = {
     username: 'student test',
     password: 'test@test.com',
-    type: ''
+    type: '',
+    isAuthenticated: false,
+    redirectToReferrer: false,
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
