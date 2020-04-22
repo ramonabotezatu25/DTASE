@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
-import LoginPage from '../src/containers/LoginPageContainer/LoginPage'
 import Routes from './components/Routes';
 
 class App extends Component {
   render() {
     return (
-      <div className="App ms-Grid" dir="ltr">
-        <Routes/>
+      // <div class="ms-Fabric" dir="ltr">
+      //   <div className="ms-Grid App" style={{height:'100%'}} dir="ltr">
+      //       <Routes />
+      //     </div>
+      //   </div>
+      <div class="App">
+          <Routes />
       </div>
     );
   }

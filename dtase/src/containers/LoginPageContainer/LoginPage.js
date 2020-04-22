@@ -6,10 +6,15 @@ import LoginForm from '../../components/loginPageComponent/login-form-component'
 const LoginPage = props => {
     console.log("login page");
 
-    return ( 
-        <div className="ms-Grid-row login-page-container">
-            <LoginIntro/>
-            <LoginForm/>
+    return (
+        // <div class="ms-Grid-row" style={{height:'100%'}}>
+        //     <div className="login-page-container">
+        //         <LoginIntro />
+        //         <LoginForm />
+        //     </div>
+        // </div>
+        <div>
+            <LoginForm />
         </div>
     );
 

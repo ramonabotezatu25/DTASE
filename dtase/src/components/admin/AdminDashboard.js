@@ -4,7 +4,7 @@ const AdminDashboard = props => {
 
     return(
         <div>
-            Student
+            Admin
         </div>
     );
 
