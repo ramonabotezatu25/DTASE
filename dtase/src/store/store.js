@@ -10,6 +10,6 @@ import rootReducer from './reducers';
 
 // const middleware = applyMiddleware(thunk, logger);
 const middleware = applyMiddleware();
-const store = createStore(rootReducer, {}, middleware);
+const store = createStore(rootReducer, {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;

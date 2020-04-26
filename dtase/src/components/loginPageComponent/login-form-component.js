@@ -7,14 +7,15 @@ import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import {
     NotificationContainer,
-    NotificationManager
+    NotificationManager,
 } from "react-notifications";
 import "react-notifications/lib/notifications.css";
 import { Redirect } from 'react-router-dom'
-import { Fabric } from 'office-ui-fabric-react/lib/Fabric';
+import {connect} from "react-redux";
+import UserActionCreator from '../../store/actions/user.action'
+import ASE_LOGO from '../../assets/Logo_ASE_Bucharest.png'
 
-
-class LoginForm extends Component {
+class LoginForm extends Component <IProps> {
     state = {
         username: '',
         password: '',
@@ -26,10 +27,18 @@ class LoginForm extends Component {
 
     accountType = 'student';
 
-    handleLogin = (event) => {
-        if (this.state.username === '' && this.state.password === '') {
+    handleLogin = () => {
+       const {dispatch} =  this.props;
+       const {username, password} =  this.state;
+       const payload = {username, password, isAuthenticated: true};
+       dispatch(UserActionCreator.login(payload));
+       this.setState(
+           {redirectToReferrer: true }
+           )
+
+        if (username === '' && password === '') {
             this.setState({ isErrorMessageHidden: false });
-            NotificationManager.error("All fields are required", "Error!");
+                NotificationManager.error("All fields are required", "Error!");
         }
         else {
             this.setState({ isErrorMessageHidden: false });
@@ -43,12 +52,14 @@ class LoginForm extends Component {
     _onToggleChange = (event, checked) => {
         if (checked) {
             this.accountType = 'professor'
-            this.setState({ type: this.accountType })
+            this.setState(
+                { type: this.accountType })
         } else {
             this.accountType = 'student';
-            this.setState({ type: this.accountType });
+            this.setState( { type: this.accountType });
         }
-        this.accountType = this.state.type;
+        this.accountType = this.type;
+
     }
 
 
@@ -60,11 +71,10 @@ class LoginForm extends Component {
     }
 
     render() {
-        const defaults = { username: 'username', password: 'password' };
-        // const { from } = this.props.location.state || { from: { pathname: '/' + this.accountType} }
-        const { from } = { from: { pathname: '/' + this.state.type } }
-        const { redirectToReferrer } = this.state;
-
+        const defaults = { username: 'Username', password: 'Password' };
+        const { from } = { from: { pathname: '/' + this.accountType } }
+        const {redirectToReferrer}  = this.state.redirectToReferrer;
+        console.warn('state redirect' , this.state.redirectToReferrer)
         if (redirectToReferrer) {
             return (
                 <Redirect to={from} />
@@ -73,15 +83,20 @@ class LoginForm extends Component {
 
         return (
             <div className="login-form-container">
-                {/* <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg6">  */}
-                    {this.state.isErrorMessageHidden ? null : <NotificationContainer />}
-                    <div className="login-form">
-                        <h2 style={{ marginLeft: '20%' }}>Login</h2>
+                    {this.isErrorMessageHidden ? null : <NotificationContainer />}
+                    <div className= "header-login-form">
+                        <div className="header-logo">
+                            <img className="logo" alt="image" src = {ASE_LOGO}/>
+                        </div>
+                        <div className="login-title">Login</div>
+                    </div>
+                    <div className="login-form"  style={{}}>
                         <div className="form-inputs">
-                            <Stack verticalAlign tokens={{ childrenGap: 50 }} styles={{ root: { width: 400 } }}>
+                            <Stack verticalAlign tokens={{ childrenGap: 30 }} styles={{ root: { width: "70%" }}}>
+                                <div className="toggle-btn">
                                 <Toggle
                                     label={
-                                        <div>
+                                        <div style={{width: 200}}>
                                             Account Type{' '}
                                             <TooltipHost content="Info tooltip">
                                                 <Icon iconName="Info" aria-label="Info tooltip" />
@@ -94,6 +109,7 @@ class LoginForm extends Component {
                                     defaultChecked={false}
                                     onChange={this._onToggleChange}
                                 />
+                                </div>
 
                                 <TextField
                                     className="input-text-field"
@@ -102,7 +118,7 @@ class LoginForm extends Component {
                                     name='username'
                                     value={this.state.username}
                                     onChange={this.handleTextChange}
-                                    styles={{ fieldGroup: { width: '30%', height: 40 } }}
+                                    styles={{ fieldGroup: { width: '100%', height: 40} }}
                                     autoFocus
 
                                 />
@@ -118,21 +134,14 @@ class LoginForm extends Component {
                                     styles={{ fieldGroup: { width: '100%', height: 40 } }}
 
                                 />
-                                <Fabric> <PrimaryButton text="Log in" onClick={this.handleLogin} allowDisabledFocus /></Fabric>
+                                <PrimaryButton className="login-btn" text="Log in" onClick={this.handleLogin} allowDisabledFocus />
                             </Stack>
                         </div>
                     </div>
                 {/* </div> */}
-            </div>
-        );
-    };
+                    </div>
 
-    mapStateToProps = state => {
-        return {
-            username: state.user.username,
-            password: state.user.password,
-            type: state.user.type    //this state is the one we set in reducer.js ( initialState )
-        }
+        );
     };
 }
 
@@ -150,4 +159,11 @@ export const fakeAuth = {
     }
 };
 
-export default LoginForm;
+const mapStateToProps = (state) => ({
+    username: state.username,
+    password: state.password,
+    type: state.type,    //this state is the one we set in reducer.js ( initialState )
+
+});
+
+export default connect(mapStateToProps)(LoginForm);

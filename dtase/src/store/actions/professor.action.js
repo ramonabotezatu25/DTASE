@@ -1,6 +1,6 @@
 import types from '../actionTypes/professor.actionType'
 
-export function approve(approved) {
+function approve(approved) {
     return {
         type: types.APPROVE_THESSIS,
         approved
@@ -8,5 +8,5 @@ export function approve(approved) {
 }
 
 export default {
-    approve
+    approve,
 }

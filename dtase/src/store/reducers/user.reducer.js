@@ -1,25 +1,25 @@
-import actions from '../actions/user.action'
+import userActionTypes from '../actions/user.action'
 
 const INITIAL_STATE = {
     username: 'student test',
     password: 'test@test.com',
-    type: '',
+    type: 'student',
     isAuthenticated: false,
-    redirectToReferrer: false,
+
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
-    switch(action.type) {
-        case actions.login: {
+    const {type, payload} = action;
+    switch(type) {
+        case userActionTypes.LOG_IN: {
             return {
-                ...state
+                ...state,
+                ...payload,
             }
         }
-        default: {
-            return {
-                ...state
-            }
-        }
+        default:
+            return state
+
     }
 }
 

@@ -1,6 +1,6 @@
 import types from '../actionTypes/student.actionType'
 
-export function upload(thessisFile) {
+function upload(thessisFile) {
     return {
         type: types.UPLOAD_THESSIS,
         thessisFile
@@ -8,5 +8,5 @@ export function upload(thessisFile) {
 }
 
 export default {
-    upload
+    upload,
 }

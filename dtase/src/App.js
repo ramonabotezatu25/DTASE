@@ -5,14 +5,9 @@ import Routes from './components/Routes';
 class App extends Component {
   render() {
     return (
-      // <div class="ms-Fabric" dir="ltr">
-      //   <div className="ms-Grid App" style={{height:'100%'}} dir="ltr">
-      //       <Routes />
-      //     </div>
-      //   </div>
-      <div class="App">
-          <Routes />
-      </div>
+          <div id="App" className="App">
+              <Routes />
+          </div>
     );
   }
 }

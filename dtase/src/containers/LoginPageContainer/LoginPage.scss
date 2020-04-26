@@ -1,4 +1,36 @@
-.login-page-container {
+.loginWrapper {
+    align-items: center;
+    justify-content: center;
+    background: antiquewhite;
     height: 100%;
-    background: linear-gradient(135deg,#F86148 0,#FDB376 100%);
+    width: 100%;
+    position: absolute;
+    display: block;
+    background: linear-gradient(135deg,#061c3e 0,#007eded9 100%);
+
+    .header-title{
+        display: flex;
+        align-items: center;
+        //position: absolute;
+        color: white;
+        font-size: 27px;
+        justify-content: center;
+        margin-top: 20px;
+        margin-left: 30px;
+        margin-right: 40px;
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
+    }
+
+    .login-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        top: 10VH;
+
+    }
+
+
 }
+

@@ -1,67 +1,96 @@
-.info-left-page {
-    // align-items: flex-start;
-    // align-content: flex-start;
-    // position: relative;
-    // width: 50%;
-    // height: 1024px;
-    background: red;
-
-    // background-color: rgb(9, 28, 89);
-    // align-items: flex-start;
-
-//     .logo-wrapper {
-//         position: relative;
-//         margin-top: 30px;
-//         margin-bottom: 30px;
-
-//         .logo-login-page{
-//             position: relative;
-//             display: inline-flex;
-//             width: 350px;
-//             height: 145px;
-//             position: relative;
-//             margin-top: 30%;
-//         }
-//     }
-
-//     .title-login-page{
-//         color: white;
-//         font-family: Arial, Helvetica, sans-serif;
-//         font-style: normal;
-//         size: 20px;
-//         font-style: normal;
-//         font-size: 30px;
-//         margin-top: 20px;
-//         font-weight: 500;
-
-
-//         &.subtitle-login-page{
-//             margin-top: 70px;
-//             margin-left: 30px;
-//             margin-right: 30px;
-            
-//         }
-//     }
-// }
-
-}
-    //right page 
 .login-form-container {
-    // position: relative;
-    // // width: 50%;
-    // display: inline-block;
-    // height:1024px;
-    // align-items: flex-end;  
-    // align-content: flex-start;
-    background-color: yellow;
+    background: white;
+    width: 60Vh;
+    height: 70Vh;
+    margin: 0px 44px;
+    display: block;
+    //display: flex;
+    //width: 600px;
+    //align-items: center;
+    //justify-content: center;
+    //-moz-border-radius: 10px 141px 14px 11px;
+    border-radius: 10px 141px 14px 11px;
+    -webkit-border-radius: 10px 141px 14px 11px;
+    border: 2px none #ba9c23;
+
+
+  .header-login-form {
+    position: relative;
+    height: 20VH;
+    display: block;
+
+      .login-title {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        //top: 70px;
+        //right: 35px;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 32px;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+      }
+
+      .header-logo {
+        position: relative;
+        width: 25%;
+        padding-bottom: 25%;
+        float: left;
+        height: 0;
+
+        .logo {
+          max-width: 100%;
+          max-height: 72%;
+          position: absolute;
+          left: 20px;
+          top: 20px;
+        }
+      }
+
+  }
 
         .login-form {
-            // transform: translate(300px, 300px);
+          height: 100%;
+          width: 100%;
+          position: relative;
+          top: 3VH;
+
+            //.ms-Grid-col {
+            //  float: unset;
+            //  margin: 10Vh;
+            //
+            //  .ms-Grid-row {
+            //    margin-top: 20px;
+            //  }
+
+              .login-btn {
+                height: 50px;
+                font-size: 23px;
+                font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                border-radius: 17px 17px 17px 17px;
+                width: 100%;
+
+              }
+            //}
 
             .form-inputs {
+              position: relative;
+              display: flex;
+              justify-content: center;
 
                 .input-text-field {
-                    width: 100%
+                  margin-bottom: 20px;
+                  width: 100%;
+                }
+
+                .login-btn {
+                  margin-top: 10px;
+                  height: 50px;
+                  font-size: 23px;
+                  font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                  border-radius: 17px 17px 17px 17px;
+                  //box-shadow: 1px 4px 5px 3px rgba(78,102,196,1);
                 }
 
             }
@@ -69,14 +98,11 @@
 }
 
 
-@media only screen and (min-width: 480px) {
-    .info-left-page {
-      background-color: greenyellow;
-      height: 100%;
-    }
+@media (max-width: 680.98px) {
+  .login-form-container {
+    width: 90Vh;
+    height: 70Vh;
+    transform: scale(1);
   }
-
-
-
-
+}
 

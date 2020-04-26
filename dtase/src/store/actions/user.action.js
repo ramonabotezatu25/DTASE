@@ -1,12 +1,13 @@
-import types from '../actionTypes/user.actionType'
+import userActionType from '../actionTypes/user.actionType'
 
-export function login(user) {
+function login(payload) {
     return {
-        type: types.LOG_IN,
-        user
+        type: userActionType.LOG_IN,
+        payload: payload,
     }
 }
 
 export default {
-    login
+    login,
 }
+
